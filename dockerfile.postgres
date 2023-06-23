@@ -1,0 +1,7 @@
+﻿# Use the official PostgreSQL image from the Docker Hub
+FROM postgres:latest
+
+# Set environment variables
+ENV POSTGRES_USER dcross
+ENV POSTGRES_PASSWORD password1
+ENV POSTGRES_DB bookdb

@@ -1,0 +1,11 @@
+﻿version: '3.9'
+services:
+  db:
+    build:
+      context: .  # Updated from ./docker to .
+      dockerfile: dockerfile.postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    restart: always
