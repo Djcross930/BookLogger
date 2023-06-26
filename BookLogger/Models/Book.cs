@@ -1,8 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using BookLogger.Models;
 
-namespace YourNamespace.Models
+namespace BookLogger.Models
 {
     public class Book
     {

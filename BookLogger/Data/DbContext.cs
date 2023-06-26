@@ -1,7 +1,6 @@
 ﻿using BookLogger.Models;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using YourNamespace.Models;
 
 namespace BookLogger.Data
 {

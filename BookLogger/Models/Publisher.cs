@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace YourNamespace.Models
+namespace BookLogger.Models
 {
     public class Publisher
     {
