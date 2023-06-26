@@ -66,16 +66,19 @@ public class BooksController : ControllerBase
 
         return NoContent();
     }
-
     // POST: api/Books
     [HttpPost]
     public async Task<ActionResult<Book>> PostBook(Book book)
     {
+        book.Author = null;
+        book.Publisher = null;
+
         _context.Books.Add(book);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction("GetBook", new { id = book.BookId }, book);
     }
+
 
     // DELETE: api/Books/5
     [HttpDelete("{id}")]

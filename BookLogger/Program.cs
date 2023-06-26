@@ -1,5 +1,6 @@
 ﻿using BookLogger.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization; // Added for JsonIgnoreCondition
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,10 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-builder.Services.AddControllers();
+// Updated to configure JSON serializer
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

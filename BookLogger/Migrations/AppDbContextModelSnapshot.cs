@@ -45,7 +45,7 @@ namespace BookLogger.Migrations
                     b.ToTable("Authors");
                 });
 
-            modelBuilder.Entity("YourNamespace.Models.Book", b =>
+            modelBuilder.Entity("BookLogger.Models.Book", b =>
                 {
                     b.Property<int>("BookId")
                         .ValueGeneratedOnAdd()
@@ -79,7 +79,7 @@ namespace BookLogger.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("YourNamespace.Models.Publisher", b =>
+            modelBuilder.Entity("BookLogger.Models.Publisher", b =>
                 {
                     b.Property<int>("PublisherId")
                         .ValueGeneratedOnAdd()
@@ -97,7 +97,7 @@ namespace BookLogger.Migrations
                     b.ToTable("Publishers");
                 });
 
-            modelBuilder.Entity("YourNamespace.Models.Book", b =>
+            modelBuilder.Entity("BookLogger.Models.Book", b =>
                 {
                     b.HasOne("BookLogger.Models.Author", "Author")
                         .WithMany("Books")
@@ -105,7 +105,7 @@ namespace BookLogger.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("YourNamespace.Models.Publisher", "Publisher")
+                    b.HasOne("BookLogger.Models.Publisher", "Publisher")
                         .WithMany("Books")
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -121,7 +121,7 @@ namespace BookLogger.Migrations
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("YourNamespace.Models.Publisher", b =>
+            modelBuilder.Entity("BookLogger.Models.Publisher", b =>
                 {
                     b.Navigation("Books");
                 });

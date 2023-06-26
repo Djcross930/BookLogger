@@ -21,7 +21,7 @@ namespace BookLogger.Models
         public int PublisherId { get; set; }
 
         // Navigation properties
-        public virtual Author Author { get; set; }
-        public virtual Publisher Publisher { get; set; }
+        public virtual Author? Author { get; set; }
+        public virtual Publisher? Publisher { get; set; }
     }
 }
