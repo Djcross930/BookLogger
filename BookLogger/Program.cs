@@ -1,11 +1,13 @@
 ﻿using BookLogger.Data;
+using BookLogger.Services; // Make sure to include the namespace where your IBookService and BookService are located
 using Microsoft.EntityFrameworkCore;
-using System.Text.Json.Serialization; // Added for JsonIgnoreCondition
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddScoped<IBookService, BookService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
@@ -13,7 +15,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Updated to configure JSON serializer
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
-        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
+    {
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+    });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
