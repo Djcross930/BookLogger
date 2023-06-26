@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using YourNamespace.Models;
 
 namespace BookLogger.Models
 {
