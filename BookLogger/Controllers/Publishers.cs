@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using BookLogger.Data;
 using BookLogger.Models;
+using BookLogger.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,10 +11,12 @@ using Microsoft.EntityFrameworkCore;
 public class PublishersController : ControllerBase
 {
     private readonly AppDbContext _context;
+    private readonly IPublisherService _publisherService;
 
-    public PublishersController(AppDbContext context)
+    public PublishersController(AppDbContext context, IPublisherService publisherService)
     {
         _context = context;
+        _publisherService = publisherService;
     }
 
     // GET: api/Publishers
@@ -91,6 +94,17 @@ public class PublishersController : ControllerBase
         await _context.SaveChangesAsync();
 
         return NoContent();
+    }
+
+    [HttpGet("{id}/books")]
+    public async Task<ActionResult<IEnumerable<Book>>> GetBooksByPublisherId(int id)
+    {
+        var books = await _publisherService.GetBooksByPublisherId(id);
+        if (books == null)
+        {
+            return NotFound();
+        }
+        return Ok(books);
     }
 
     private bool PublisherExists(int id)
