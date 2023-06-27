@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookLogger.Services
 {
-    public class BookService : IBookService
+    public class AuthorService : IAuthorService
     {
         private readonly AppDbContext _context;
 
-        public BookService(AppDbContext context)
+        public AuthorService(AppDbContext context)
         {
             _context = context;
         }

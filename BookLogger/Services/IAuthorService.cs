@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using BookLogger.Models;
 
-public interface IBookService
+public interface IAuthorService
 {
     Task<IEnumerable<Book>> GetBooksByAuthorId(int authorId);
 }

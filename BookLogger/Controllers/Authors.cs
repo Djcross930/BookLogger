@@ -11,12 +11,12 @@ using Microsoft.EntityFrameworkCore;
 public class AuthorsController : ControllerBase
 {
     private readonly AppDbContext _context;
-    private readonly IBookService _bookService;
+    private readonly IAuthorService _authorService;
 
-    public AuthorsController(AppDbContext context, IBookService bookService)
+    public AuthorsController(AppDbContext context, IAuthorService authorService)
     {
         _context = context;
-        _bookService = bookService;
+        _authorService = authorService;
     }
 
     // GET: api/Authors
@@ -44,7 +44,7 @@ public class AuthorsController : ControllerBase
     [HttpGet("{id}/books")]
     public async Task<ActionResult<IEnumerable<Book>>> GetBooksByAuthor(int id)
     {
-        var books = await _bookService.GetBooksByAuthorId(id);
+        var books = await _authorService.GetBooksByAuthorId(id);
 
         if (books == null)
         {
