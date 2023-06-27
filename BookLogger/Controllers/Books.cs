@@ -4,16 +4,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BookLogger.Models;
 using BookLogger.Data;
+using BookLogger.Services;
 
 [ApiController]
 [Route("api/[controller]")]
 public class BooksController : ControllerBase
 {
     private readonly AppDbContext _context;
+    private readonly IBookService _bookService;
 
-    public BooksController(AppDbContext context)
+    public BooksController(AppDbContext context, IBookService bookService)
     {
         _context = context;
+        _bookService = bookService;
+    }
+    //GET /api/books/short?maxPages={maxPages}
+    [HttpGet("short")]
+    public async Task<ActionResult<IEnumerable<Book>>> GetShortBooks([FromQuery] int maxPages = 100)
+    {
+        var books = await _bookService.GetShortBooks(maxPages);
+        return Ok(books);
     }
 
     // GET: api/Books
